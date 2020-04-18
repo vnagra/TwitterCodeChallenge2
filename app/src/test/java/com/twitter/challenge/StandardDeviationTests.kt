@@ -1,0 +1,78 @@
+package com.twitter.challenge
+
+import com.twitter.challenge.util.StandardDeviation.standardDeviation
+import org.assertj.core.api.Assertions
+import org.junit.Test
+import java.lang.Float.POSITIVE_INFINITY
+import java.util.*
+
+class StandardDeviationTests {
+    @Test
+    fun testStandardDeviation() {
+        val precision = Assertions.within(0.01f)
+        val dataPoints: MutableList<Float> =
+            ArrayList()
+        dataPoints.add(16.83f)
+        dataPoints.add(11.15f)
+        dataPoints.add(14.2f)
+        dataPoints.add(9.88f)
+        dataPoints.add(19.19f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(3.87f, precision)
+        dataPoints.clear()
+        dataPoints.add(-1f)
+        dataPoints.add(-6f)
+        dataPoints.add(10f)
+        dataPoints.add(-1f)
+        dataPoints.add(-1f)
+        dataPoints.add(-1f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(5.29f, precision)
+        dataPoints.clear()
+        dataPoints.add(-1f)
+        dataPoints.add(-6f)
+        dataPoints.add(1000000000f)
+        dataPoints.add(-1f)
+        dataPoints.add(-1f)
+        dataPoints.add(-1f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(408248291.3f, precision)
+        dataPoints.clear()
+        dataPoints.add(0f)
+        dataPoints.add(0f)
+        dataPoints.add(0f)
+        dataPoints.add(0f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(0f, precision)
+        dataPoints.clear()
+        dataPoints.add(-5f)
+        dataPoints.add(-4f)
+        dataPoints.add(-3f)
+        dataPoints.add(-2f)
+        dataPoints.add(-1f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(1.58f, precision)
+        dataPoints.clear()
+        dataPoints.add(5f)
+        dataPoints.add(4f)
+        dataPoints.add(3f)
+        dataPoints.add(2f)
+        dataPoints.add(1f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(1.58f, precision)
+        dataPoints.clear()
+        dataPoints.add(5f)
+        dataPoints.add(0f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(3.54f, precision)
+        dataPoints.clear()
+        dataPoints.add(5f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(POSITIVE_INFINITY, precision)
+        dataPoints.clear()
+        dataPoints.add(5f)
+        dataPoints.add(100f)
+        Assertions.assertThat(standardDeviation(dataPoints))
+            .isEqualTo(67.18f, precision)
+    }
+}

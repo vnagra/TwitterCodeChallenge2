@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Tweather</string>
     <string name="current_temperature">Current temperature</string>
-    <string name="temperature">%1$f °C / %2$f °F</string>
+    <string name="temperature">%1$.2f °C / %2$.2f °F</string>
+    <string name="wind_speed_unit">%1$.2f  m/s</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="button">Button</string>
+    <string name="connection_problem">Connection Problem!!</string>
+    <string name="hint">Click the button to get Standard deviation temperature for the next five days</string>
+    <string name="standard_deviation">Standard Deviation %1$.2f °C / %2$.2f °F</string>
+    <string name="cloud_image">Cloud image</string>
 </resources>
