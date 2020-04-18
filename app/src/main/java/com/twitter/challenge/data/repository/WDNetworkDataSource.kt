@@ -58,7 +58,7 @@ class WDNetworkDataSource(
         val dataPoints: ArrayList<Float> = ArrayList()
         try {
             val subscribe = range(1, days)
-                .flatMap { day ->
+                .concatMap { day ->
                     apiService.getFutureWeatherDetails(day)
                         .map { response ->
                             dataPoints.add(response.weather.temp)
@@ -67,10 +67,13 @@ class WDNetworkDataSource(
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
-                        standardDeviation.postValue(standardDeviation(dataPoints))
+
                     },
                     {
                         Log.e("WeatherDataSource", it.message)
+                    },
+                    {
+                        standardDeviation.postValue(standardDeviation(dataPoints))
                     }
                 )
             _std.value = _standardDeviation
